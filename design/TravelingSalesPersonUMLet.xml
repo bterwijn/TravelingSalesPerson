@@ -1,0 +1,81 @@
+<diagram program="umletino" version="14.2"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>12</x><y>13</y><w>320</w><h>170</h></coordinates><panel_attributes>Map
+--
+
+--
+void randomizeMap(int nrCities,Position mapSize)
+int getNrCities()
+City getCity(int i)
+double getDistance(int c1,int c2)
+Route initRoute()
+void save(string filename)
+void load(string filename)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>12</x><y>253</y><w>210</w><h>100</h></coordinates><panel_attributes>City
+--
+string name
+--
+init(string name,Position position)
+string getName()
+Position getPosition()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>12</x><y>413</y><w>210</w><h>110</h></coordinates><panel_attributes>Position
+--
+List&lt;int&gt; coordinates
+--
+init(List&lt;int&gt; coordinates)
+List&lt;int&gt; getCoordinates()
+double distance(Position p2)
+Position random()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>392</x><y>13</y><w>210</w><h>240</h></coordinates><panel_attributes>Route
+--
+List&lt;int&gt; route
+Set&lt;int&gt; remainingCities
+double distance
+--
+init(int nrCities,int startCity)
+List&lt;int&gt; getRoute()
+List&lt;int&gt; getRemainingCities()
+int getCurrentCity()
+void selectNextCity(int c)
+void unselectLastCity(int c)
+void randomize()
+void randomSwapTwoCities()
+void save(string filename)
+void load(string filename)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>102</x><y>173</y><w>40</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+1
+
+n</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>Relation</id><coordinates><x>102</x><y>343</y><w>40</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+1</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>UMLClass</id><coordinates><x>932</x><y>593</y><w>140</w><h>120</h></coordinates><panel_attributes>DepthFirstAlgorithm
+--
+
+--
+int getClosestCity(int c,Set&lt;int&gt; remainingCities)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>162</x><y>593</y><w>210</w><h>120</h></coordinates><panel_attributes>RandomAlgorithm
+--
+
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>382</x><y>593</y><w>210</w><h>120</h></coordinates><panel_attributes>HillClimberAlgorithm
+--
+
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>622</x><y>593</y><w>150</w><h>120</h></coordinates><panel_attributes>GreedyAlgorithm
+--
+
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>782</x><y>593</y><w>140</w><h>120</h></coordinates><panel_attributes>BreadthFirstAlgorithm
+--
+
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>502</x><y>293</y><w>210</w><h>120</h></coordinates><panel_attributes>Algorithm
+--
+
+--
+Route run(Map map)
+void startTimer()
+void stopTimer()
+double getRunTime()
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>902</x><y>530</y><w>110</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;90;60</additional_attributes></element><element><id>Relation</id><coordinates><x>262</x><y>530</y><w>90</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>70;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>412</x><y>530</y><w>100</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;80;60</additional_attributes></element><element><id>Relation</id><coordinates><x>692</x><y>530</y><w>100</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>80;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>842</x><y>530</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>UMLClass</id><coordinates><x>292</x><y>453</y><w>210</w><h>90</h></coordinates><panel_attributes>IterativeAlgorithm
+--
+List&lt;double&gt; distances
+--
+init(int nrIteration,int restartCount)
+List&lt;double&gt; getDistances()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>722</x><y>463</y><w>210</w><h>80</h></coordinates><panel_attributes>ConstructiveAlgorithm
+--
+
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>462</x><y>400</y><w>90</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>70;10;10;50</additional_attributes></element><element><id>Relation</id><coordinates><x>682</x><y>400</y><w>90</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;70;60</additional_attributes></element></diagram>
