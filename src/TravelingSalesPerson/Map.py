@@ -1,5 +1,5 @@
 import sys
-sys.path.append('../')
+sys.path.append('..')
 from imports import *
 
 class Map:
@@ -8,6 +8,7 @@ class Map:
     def __init__(self):
         """initialize"""
         self.cities=[]
+        self.distanceCache={} # dictonary to remember distances computes between cities
 
     def __repr__(self):
         """defines what is printed by print() function"""
@@ -31,9 +32,21 @@ class Map:
 
     def getDistance(self,c1,c2):
         """get distance between city with index c1 and c2"""
-        p1=self.cities[c1].getPosition()
-        p2=self.cities[c2].getPosition()
-        return p1.distance(p2)
+        if c1>c2:
+            temp=c1
+            c1=c2
+            c2=temp
+        distance=0
+        if (c1,c2) not in self.distanceCache:
+            p1=self.cities[c1].getPosition()
+            p2=self.cities[c2].getPosition()
+            distance=p1.distance(p2)
+            self.distanceCache[(c1,c2)]=distance # cache the computed distance for future invocations
+            return distance
+        return self.distanceCache[(c1,c2)]
+
+    def initRoute(self):
+        return Route(self.getNrCities(),0)
     
     def save(self,filename):
         """save Map to file"""
