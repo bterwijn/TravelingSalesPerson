@@ -9,7 +9,7 @@ class Route:
         """initialize with the number of cities and the city the Route starts with"""
         self.initHelper(nrCities,startCity)
 
-    def initHelper(nrCities,startCity):
+    def initHelper(self,nrCities,startCity):
         """initialize with the number of cities and the city the Route starts with"""
         self.distance=float(0)
         self.route=[startCity]
@@ -69,47 +69,65 @@ class Route:
         """randomize the route but keep the start and end city fixed"""
         self.initHelper(myMap.getNrCities(),self.route[0])
         while True:
-            nextCity=random.sample(self.remainingCities,1)
-            self.selectNextCity(myMap,nextCity):
+            nextCity=random.sample(self.remainingCities,1)[0]
+            self.selectNextCity(myMap,nextCity)
             if len(self.remainingCities)==0:
                 break;
 
     def randomSwapTwoCities(self,myMap):
         """randomly swap two cities in the route but don't swap the start
            city, and don't swap the end city if the route is a loop"""
-            end=len(self.route)-1
-            if route[0]==route[-1]: # route is a loop
-                end-=1 
-            if end>2: # if there are a least 2 different cities to swap
-                index1=randomint(1,end) # select first city to swap
-                while True:
-                    index2=randomint(1,end)  # select second city to swap
-                    if index2!=index1: # until index2 is different from index1
-                        break
-                # now swap cities on index1 and index2
-                c1=self.removeCityHelper(myMap,index1)
-                c2=self.removeCityHelper(myMap,index2)
-                self.addCityHelper(myMap,index1,c2)
-                self.addCityHelper(myMap,index2,c1)
+        swap=self.selectTwoSwapCitiesHelper(myMap)
+        if len(swap)>0:
+             self.swapTwoCitiesHelper(self,myMap,swap)
+
+    def selectTwoSwapCitiesHelper(self,myMap):
+        """randomly select two cities in the route to swap but don't select the start
+           city, and don't select the end city if the route is a loop"""
+        end=len(self.route)-1
+        if self.route[0]==self.route[-1]: # route is a loop
+            end-=1 
+        if end>2: # if there are a least 2 different cities to swap
+            index1=random.randint(1,end) # select first city to swap
+            while True:
+                index2=random.randint(1,end)  # select second city to swap
+                if index2!=index1: # until index2 is different from index1
+                    break
+            return [index1,index2]
+        else:
+            return []
+
+    def swapTwoCitiesHelper(self,myMap,swap):
+        """helper to swap two cities at index1 and index2 (both may not point to the start city) and update distance"""
+        # now swap cities on index1 and index2
+        c1=self.removeCityHelper(myMap,swap[0]) # subtract distance
+        c2=self.removeCityHelper(myMap,swap[1])
+        self.route[swap[0]]=c2 # set new cities
+        self.route[swap[1]]=c1
+        self.addCityHelper(myMap,swap[0],c2) # add distance
+        self.addCityHelper(myMap,swap[1],c1)
                 
     def removeCityHelper(self,myMap,index):
         """helper to remove city at index and update distance, and return removed city"""
         c=self.route[index]
         cPrev=self.route[index-1]
-        distance-=myMap.getDistance(cPrev,c)
+        #print("min:",cPrev,c)
+        self.distance-=myMap.getDistance(cPrev,c)
         if index<len(self.route)-1: # is not last city in the route
             cNext=self.route[index+1]
-            distance-=myMap.getDistance(c,cNext)
+            #print("min:",c,cNext)
+            self.distance-=myMap.getDistance(c,cNext)
         return c
         
     def addCityHelper(self,myMap,index,c):
         """helper to add city c at index and update distance"""
-        self.route[index]=c
         cPrev=self.route[index-1]
-        distance+=myMap.getDistance(cPrev,c)
+        #print("plus:",cPrev,c)
+        self.distance+=myMap.getDistance(cPrev,c)
         if index<len(self.route)-1: # is not last city in the route
             cNext=self.route[index+1]
-            distance+=myMap.getDistance(c,cNext)
+            self.distance+=myMap.getDistance(c,cNext)
+            #print("plus:",c,cNext)
 
     def save(self,filename):
         """save Map to file"""
@@ -118,7 +136,7 @@ class Route:
             f.write("distance: "+str(self.distance)+"\n")
             f.write("remainingCities: ")
             if (len(self.remainingCities)==0):
-                f.write("{}\n") # otherwise it writes "set()"
+                f.write("{}\n") # otherwise it writes "set()" that complicates parsing when loading
             else:
                 f.write(str(self.remainingCities)+"\n")
 
@@ -151,6 +169,19 @@ class Route:
         myMap.randomizeMap(nrCities,Position([1,1]))
         route=myMap.initRoute()
         Route.recursiveDistanceTest(0,nrCities-1,myMap,route)
+        for i in range(20):
+            route.randomize(myMap)
+            dist1=route.getDistance()
+            print(route)
+            n=len(route.getRoute())-1
+            for j in range(100):
+                swap=route.selectTwoSwapCitiesHelper(myMap)
+                if len(swap)>0:
+                    print(swap)
+                    route.swapTwoCitiesHelper(myMap,swap) # swap
+                    route.swapTwoCitiesHelper(myMap,swap) # and back
+                    dist2=route.getDistance()
+                    assert dist1-dist2<0.000001, "Error in swapTwoCities distance test"
 
     def recursiveDistanceTest(depth,maxDepth,myMap,route):
         """test is selecting and unselecting results in the same distance"""

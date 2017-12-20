@@ -20,7 +20,7 @@ class Position:
     
     def distance(self,p2):
         """compute distance to p2"""
-        return sqrt(self.squareDistance(p2))
+        return math.sqrt(self.squareDistance(p2))
         
     def squareDistance(self,p2):
         """compute square distance to p2 using pythagoras"""
@@ -34,7 +34,7 @@ class Position:
         """return a new Position with coordinates between 0 and the coordinates of this object"""
         c=[]
         for i in self.coordinates:
-            c.append(uniform(0,i))
+            c.append(random.uniform(0,i))
         return Position(c)
         
     def unitTest():
@@ -44,9 +44,9 @@ class Position:
         assert (p1.distance(p1)==0), "Error, distance to it self should be 0"
         p1=Position([0,0,1])
         p2=Position([0,1,0])
-        assert (p1.distance(p1)-sqrt(2)<0.00001), "Error, distance incorrect"
+        assert (p1.distance(p1)-math.sqrt(2)<0.00001), "Error, distance incorrect"
         p1=Position([2,0,0])
-        assert (p1.distance(p1)-sqrt(5)<0.00001), "Error, distance incorrect"
+        assert (p1.distance(p1)-math.sqrt(5)<0.00001), "Error, distance incorrect"
         print("success")
 
 def main(argv):

@@ -1,7 +1,7 @@
 
 # system
-from math import sqrt
-from random import uniform
+import math
+import random
 
 # my sources
 from TravelingSalesPerson.Position import *
