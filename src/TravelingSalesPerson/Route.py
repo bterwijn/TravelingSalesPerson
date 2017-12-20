@@ -74,38 +74,36 @@ class Route:
             if len(self.remainingCities)==0:
                 break;
 
-    def randomSwapTwoCities(self,myMap):
+    def randomSwapCities(self,myMap,nrCities):
         """randomly swap two cities in the route but don't swap the start
            city, and don't swap the end city if the route is a loop"""
-        swap=self.selectTwoSwapCitiesHelper(myMap)
+        swap=self.selectSwapCitiesHelper(myMap,nrCities)
         if len(swap)>0:
-             self.swapTwoCitiesHelper(self,myMap,swap)
+             self.swapCitiesHelper(self,myMap,swap)
 
-    def selectTwoSwapCitiesHelper(self,myMap):
-        """randomly select two cities in the route to swap but don't select the start
+    def selectSwapCitiesHelper(self,myMap,nrCities):
+        """helper to randomly select two cities in the route to swap but don't select the start
            city, and don't select the end city if the route is a loop"""
-        end=len(self.route)-1
+        end=len(self.route)
         if self.route[0]==self.route[-1]: # route is a loop
             end-=1 
-        if end>2: # if there are a least 2 different cities to swap
-            index1=random.randint(1,end) # select first city to swap
-            while True:
-                index2=random.randint(1,end)  # select second city to swap
-                if index2!=index1: # until index2 is different from index1
-                    break
-            return [index1,index2]
+        if end+1>nrCities: # if there are a least nrCities different cities to swap
+            return random.sample(self.route[1:end],nrCities)
         else:
             return []
 
-    def swapTwoCitiesHelper(self,myMap,swap):
+    def swapCitiesHelper(self,myMap,swap):
         """helper to swap two cities at index1 and index2 (both may not point to the start city) and update distance"""
         # now swap cities on index1 and index2
-        c1=self.removeCityHelper(myMap,swap[0]) # subtract distance
-        c2=self.removeCityHelper(myMap,swap[1])
-        self.route[swap[0]]=c2 # set new cities
-        self.route[swap[1]]=c1
-        self.addCityHelper(myMap,swap[0],c2) # add distance
-        self.addCityHelper(myMap,swap[1],c1)
+        swappedCities=[]
+        for i in swap:
+            swappedCities.append(self.removeCityHelper(myMap,i)) # subtract distance
+        print("swappedCities:",swappedCities)
+        for i in range(len(swap)):
+            self.route[swap[i]]=swappedCities[(i+1)%len(swap)] # set new cities
+        print("new route:",self.route)
+        for i in swap:
+            self.addCityHelper(myMap,i) # add distance
                 
     def removeCityHelper(self,myMap,index):
         """helper to remove city at index and update distance, and return removed city"""
@@ -119,8 +117,9 @@ class Route:
             self.distance-=myMap.getDistance(c,cNext)
         return c
         
-    def addCityHelper(self,myMap,index,c):
+    def addCityHelper(self,myMap,index):
         """helper to add city c at index and update distance"""
+        c=self.route[index]
         cPrev=self.route[index-1]
         #print("plus:",cPrev,c)
         self.distance+=myMap.getDistance(cPrev,c)
@@ -172,16 +171,17 @@ class Route:
         for i in range(20):
             route.randomize(myMap)
             dist1=route.getDistance()
-            print(route)
             n=len(route.getRoute())-1
             for j in range(100):
-                swap=route.selectTwoSwapCitiesHelper(myMap)
+                nrCities=3
+                swap=route.selectSwapCitiesHelper(myMap,nrCities)
                 if len(swap)>0:
+                    print(route)
                     print(swap)
-                    route.swapTwoCitiesHelper(myMap,swap) # swap
-                    route.swapTwoCitiesHelper(myMap,swap) # and back
+                    route.swapCitiesHelper(myMap,swap) # swap
+                    route.swapCitiesHelper(myMap,swap[::-1]) # and swap back (reverse swap)
                     dist2=route.getDistance()
-                    assert dist1-dist2<0.000001, "Error in swapTwoCities distance test"
+                    assert dist1-dist2<0.000001, "Error in swapCities distance test"
 
     def recursiveDistanceTest(depth,maxDepth,myMap,route):
         """test is selecting and unselecting results in the same distance"""
