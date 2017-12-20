@@ -37,7 +37,7 @@ class Position:
             c.append(random.uniform(0,i))
         return Position(c)
         
-    def unitTest():
+    def unitTest(argv):
         """run unit tests"""
         print("Position.test() ", end='', flush=True)
         p1=Position([i for i in range(3)])
@@ -49,8 +49,5 @@ class Position:
         assert (p1.distance(p1)-math.sqrt(5)<0.00001), "Error, distance incorrect"
         print("success")
 
-def main(argv):
-    Position.unitTest()
-
 if __name__ == "__main__":
-    main(sys.argv)
+    Position.unitTest(sys.argv)

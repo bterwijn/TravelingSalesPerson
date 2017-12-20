@@ -62,20 +62,21 @@ int getClosestCity(int c,Set&lt;int&gt; remainingCities)</panel_attributes><addi
 --
 
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>502</x><y>293</y><w>210</w><h>120</h></coordinates><panel_attributes>Algorithm
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>502</x><y>313</y><w>210</w><h>100</h></coordinates><panel_attributes>Algorithm
 --
 
 --
 Route run(Map map)
-void startTimer()
-void stopTimer()
-double getRunTime()
+int startTimer()
+double readTimer(timerID)
+
 </panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>902</x><y>530</y><w>110</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;90;60</additional_attributes></element><element><id>Relation</id><coordinates><x>262</x><y>530</y><w>90</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>70;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>412</x><y>530</y><w>100</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;80;60</additional_attributes></element><element><id>Relation</id><coordinates><x>692</x><y>530</y><w>100</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>80;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>842</x><y>530</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element><element><id>UMLClass</id><coordinates><x>292</x><y>453</y><w>210</w><h>90</h></coordinates><panel_attributes>IterativeAlgorithm
 --
-List&lt;double&gt; distances
+List&lt;double&gt; scores
 --
-init(int nrIteration,int restartCount)
-List&lt;double&gt; getDistances()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>722</x><y>463</y><w>210</w><h>80</h></coordinates><panel_attributes>ConstructiveAlgorithm
+init(int nrIteration)
+addScore(double score)
+List&lt;double&gt; getScores()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>722</x><y>463</y><w>210</w><h>80</h></coordinates><panel_attributes>ConstructiveAlgorithm
 --
 
 --

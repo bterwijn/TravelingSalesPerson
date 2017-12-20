@@ -70,15 +70,12 @@ class Map:
                     coordinates.append(float(splitLine[i]))
                 self.cities.append(City(name,Position(coordinates)))                
 
-    def unitTest():
+    def unitTest(argv):
         m=Map()
         m.randomizeMap(10,Position([10,10]))
         m.save("testMap.txt")
         m.load("testMap.txt")
         m.save("testMap2.txt")
         
-def main(argv):
-    Map.unitTest()
-
 if __name__ == "__main__":
-    main(sys.argv)
+    Map.unitTest(sys.argv)

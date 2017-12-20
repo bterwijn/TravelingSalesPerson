@@ -74,6 +74,9 @@ class Route:
             if len(self.remainingCities)==0:
                 break;
 
+    def randomSwap2Cities(self,myMap):
+        self.randomSwapCities(myMap,2)
+
     def randomSwapCities(self,myMap,nrCities):
         """randomly swap two cities in the route but don't swap the start
            city, and don't swap the end city if the route is a loop"""
@@ -161,7 +164,7 @@ class Route:
                 if (len(i))>0:
                     self.remainingCities.add(int(i))
                 
-    def unitTest():
+    def unitTest(argv):
         """run unit tests"""
         myMap=Map()
         nrCities=10
@@ -198,8 +201,5 @@ class Route:
         else:
             print(route)
         
-def main(argv):
-    Route.unitTest()
-
 if __name__ == "__main__":
-    main(sys.argv)
+    Route.unitTest(sys.argv)
