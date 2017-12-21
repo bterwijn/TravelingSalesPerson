@@ -38,9 +38,9 @@ class Route:
         """get the current city on the route"""
         return self.route[-1]
 
-    def isLoop(self):
+    def isComplete(self):
         """get the current city on the route"""
-        return self.route[0]==self.route[-1]
+        return len(self.remainingCities)==0
     
     def selectNextCity(self,myMap,nextCity):
         """select the next city on the route"""
@@ -92,7 +92,7 @@ class Route:
         """helper to randomly select two cities in the route to swap but don't select the start
            city, and don't select the end city if the route is a loop"""
         end=len(self.route)
-        if self.isLoop(): # route is a loop
+        if self.route[0]==self.route[-1]: # route is a loop
             end-=1 
         if end+1>nrCities: # if there are a least nrCities different cities to swap
             return random.sample(self.route[1:end],nrCities)

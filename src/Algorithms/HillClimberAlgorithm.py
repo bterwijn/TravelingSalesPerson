@@ -7,10 +7,7 @@ class HillClimberAlgorithm(IterativeAlgorithm):
     def __init__(self,nrIterations,restartCounter):
         super().__init__(nrIterations)
         self.restartCounter=restartCounter
-        self.bestScore=float('inf')
-        self.bestRoute=None
-        self.iteration=0
-        
+ 
     def run(self,myMap):
         self.startTimer()
         self.bestScore=float('inf')
@@ -30,14 +27,14 @@ class HillClimberAlgorithm(IterativeAlgorithm):
         while self.iteration<self.nrIterations:
             self.iteration+=1
             route.randomSwap2Cities(myMap) # do single hill climber step
-            dist=route.getDistance()
-            self.addScore(dist) # record score
-            if dist<self.bestScore: # if better update best
-                self.bestScore=dist
+            distance=route.getDistance()
+            self.addScore(distance) # record score
+            if distance<self.bestScore: # if better update best
+                self.bestScore=distance
                 self.bestRoute=copy.deepcopy(route)
                 print("bestScore:",self.bestScore)
-            if dist<localBestScore: # if better update local best
-                localBestScore=dist
+            if distance<localBestScore: # if better update local best
+                localBestScore=distance
                 localBestRoute=copy.deepcopy(route)
                 print("localBestScore:",localBestScore)
                 print("notImproved:",notImproved)

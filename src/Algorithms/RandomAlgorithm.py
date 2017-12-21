@@ -14,10 +14,10 @@ class RandomAlgorithm(IterativeAlgorithm):
         route=myMap.initRoute()
         for i in range(self.nrIterations):
             route.randomize(myMap)
-            dist=route.getDistance()
-            self.addScore(dist) # record score 
-            if dist<bestScore:
-                bestScore=dist
+            distance=route.getDistance()
+            self.addScore(distance) # record score 
+            if distance<bestScore:
+                bestScore=distance
                 bestRoute=copy.deepcopy(route)
                 print(bestScore)
         self.stopTimer()

@@ -32,7 +32,7 @@ List&lt;int&gt; getRoute()
 float getDistance()
 Set&lt;int&gt; getRemainingCities()
 int getCurrentCity()
-bool isLoop()
+bool isComplete()
 void selectNextCity(Map myMap,int nextCity)
 void unselectLastCity(Map myMap)
 void randomize(Map myMap)
@@ -47,7 +47,7 @@ n</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></
 --
 
 --
-int getClosestCity(Map myMap,Route route)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>150</x><y>593</y><w>210</w><h>120</h></coordinates><panel_attributes>RandomAlgorithm
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>150</x><y>593</y><w>210</w><h>120</h></coordinates><panel_attributes>RandomAlgorithm
 --
 
 --
@@ -59,7 +59,7 @@ init(int nrIteration,int restartCounter)</panel_attributes><additional_attribute
 --
 
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>770</x><y>593</y><w>140</w><h>120</h></coordinates><panel_attributes>BreadthFirstAlgorithm
+int getClosestCity(Map myMap,Route route)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>770</x><y>593</y><w>140</w><h>120</h></coordinates><panel_attributes>BreadthFirstAlgorithm
 --
 
 --

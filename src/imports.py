@@ -11,9 +11,11 @@ from TravelingSalesPerson.City import *
 from TravelingSalesPerson.Route import *
 from TravelingSalesPerson.Map import *
 
+# algorithms
 from Algorithms.Algorithm import *
-from Algorithms.IterativeAlgorithm import *
+from Algorithms.IterativeAlgorithm import * # iterative
 from Algorithms.RandomAlgorithm import *
 from Algorithms.HillClimberAlgorithm import *
-from Algorithms.ConstructiveAlgorithm import *
+from Algorithms.ConstructiveAlgorithm import * # constructive
 from Algorithms.GreedyAlgorithm import *
+from Algorithms.DepthFirstAlgorithm import *
