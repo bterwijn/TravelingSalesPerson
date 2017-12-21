@@ -5,23 +5,27 @@ from imports import *
 class Algorithm:
     
     def __init__(self):
-        self.time=[]
+        self.timeStart=0
+        self.timeStop=0
 
     def run(self,myMap):
         return None
     
     def startTimer(self):
-        self.time.append(time.time())
-        return len(self.time)-1
+        self.timeStart=time.time()
 
-    def readTimer(self,timerID):
-        return time.time()-self.time[timerID]
+    def stopTimer(self):
+        self.timeStop=time.time()
 
+    def getTime(self):
+        return self.timeStop-self.timeStart
+        
     def unitTest(argv):
         algo=Algorithm()
-        timerID=algo.startTimer()
+        algo.startTimer()
         time.sleep(.300)
-        print(algo.readTimer(timerID))
+        algo.stopTimer()
+        print(algo.getTime())
     
 if __name__ == "__main__":
     Algorithm.unitTest(sys.argv)

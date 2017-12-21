@@ -8,6 +8,7 @@ class RandomAlgorithm(IterativeAlgorithm):
         super().__init__(nrIterations)
 
     def run(self,myMap):
+        self.startTimer()
         bestScore=float('inf')
         bestRoute=None
         route=myMap.initRoute()
@@ -19,6 +20,7 @@ class RandomAlgorithm(IterativeAlgorithm):
                 bestScore=dist
                 bestRoute=copy.deepcopy(route)
                 print(bestScore)
+        self.stopTimer()
         return bestRoute
 
     def unitTest(argv):
@@ -28,6 +30,7 @@ class RandomAlgorithm(IterativeAlgorithm):
         route=algo.run(myMap)
         #print(algo.getScores())
         print(route)
+        print("time:",algo.getTime())
     
 if __name__ == "__main__":
     RandomAlgorithm.unitTest(sys.argv)
