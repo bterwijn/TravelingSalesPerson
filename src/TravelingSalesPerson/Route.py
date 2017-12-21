@@ -82,7 +82,7 @@ class Route:
            city, and don't swap the end city if the route is a loop"""
         swap=self.selectSwapCitiesHelper(myMap,nrCities)
         if len(swap)>0:
-             self.swapCitiesHelper(self,myMap,swap)
+             self.swapCitiesHelper(myMap,swap)
 
     def selectSwapCitiesHelper(self,myMap,nrCities):
         """helper to randomly select two cities in the route to swap but don't select the start
@@ -101,10 +101,10 @@ class Route:
         swappedCities=[]
         for i in swap:
             swappedCities.append(self.removeCityHelper(myMap,i)) # subtract distance
-        print("swappedCities:",swappedCities)
+        #print("swappedCities:",swappedCities)
         for i in range(len(swap)):
             self.route[swap[i]]=swappedCities[(i+1)%len(swap)] # set new cities
-        print("new route:",self.route)
+        #print("new route:",self.route)
         for i in swap:
             self.addCityHelper(myMap,i) # add distance
                 

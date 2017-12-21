@@ -13,3 +13,4 @@ from TravelingSalesPerson.Map import *
 
 from Algorithms.Algorithm import *
 from Algorithms.IterativeAlgorithm import *
+from Algorithms.HillClimberAlgorithm import *
