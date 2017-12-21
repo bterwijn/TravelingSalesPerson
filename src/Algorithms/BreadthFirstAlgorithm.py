@@ -23,13 +23,16 @@ class BreadthFirstAlgorithm(ConstructiveAlgorithm):
             while len(generation)>0: # make new generation
                 route=generation.pop() # for each individual in the generation
                 for nextCity in route.getRemainingCities(): # create all childeren
-                    newRoute=copy.deepcopy(route)           # copy parent
-                    newRoute.selectNextCity(myMap,nextCity) # update child
-                    newGeneration.append(newRoute)          # add child to new generation
-                    distance=newRoute.getDistance()
-                    if distance<self.bestScore:
-                        self.bestScore=distance
-                        self.bestRoute=newRoute
+                    child=copy.deepcopy(route)           # copy parent
+                    child.selectNextCity(myMap,nextCity) # update child
+                    if not child.isComplete():
+                        newGeneration.append(child)      # add child to new generation
+                    else:
+                        distance=child.getDistance()
+                        self.addScore(distance)
+                        if distance<self.bestScore:
+                            self.bestScore=distance
+                            self.bestRoute=child
             generation=newGeneration # replace current generation
     
     def unitTest(argv):

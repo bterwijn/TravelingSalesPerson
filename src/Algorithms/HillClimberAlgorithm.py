@@ -15,11 +15,11 @@ class HillClimberAlgorithm(IterativeAlgorithm):
         self.iteration=0
         route=myMap.initRoute()
         while self.iteration<self.nrIterations:
-            self.hillClimberRun(route,myMap)
+            self.hillClimberRun(myMap,route)
         self.stopTimer()
         return self.bestRoute
 
-    def hillClimberRun(self,route,myMap):
+    def hillClimberRun(self,myMap,route):
         localBestScore=float('inf')
         localBestRoute=None
         route.randomize(myMap) # restart hill climber with random route

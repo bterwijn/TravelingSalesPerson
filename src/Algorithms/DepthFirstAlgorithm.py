@@ -19,6 +19,7 @@ class DepthFirstAlgorithm(ConstructiveAlgorithm):
     def recursiveDepthFirst(self,myMap,route):
         distance=route.getDistance()
         if route.isComplete(): # stop condition
+            self.addScore(distance)
             if distance<self.bestScore:
                 self.bestScore=distance
                 self.bestRoute=copy.deepcopy(route)
