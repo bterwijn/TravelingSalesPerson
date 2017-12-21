@@ -27,7 +27,7 @@ class Position:
         mySum=0
         for i in range(len(self.coordinates)):
             d=self.coordinates[i]-p2.coordinates[i]
-            mySum=d*d
+            mySum+=d*d
         return mySum
 
     def random(self):
@@ -44,9 +44,10 @@ class Position:
         assert (p1.distance(p1)==0), "Error, distance to it self should be 0"
         p1=Position([0,0,1])
         p2=Position([0,1,0])
-        assert (p1.distance(p1)-math.sqrt(2)<0.00001), "Error, distance incorrect"
-        p1=Position([2,0,0])
-        assert (p1.distance(p1)-math.sqrt(5)<0.00001), "Error, distance incorrect"
+        print (p1,p2,p1.distance(p2),math.sqrt(2))
+        assert (math.fabs(p1.distance(p2)-math.sqrt(2))<0.00001), "Error, distance incorrect"
+        p2=Position([2,0,0])
+        assert (math.fabs(p1.distance(p2)-math.sqrt(5))<0.00001), "Error, distance incorrect"
         print("success")
 
 if __name__ == "__main__":

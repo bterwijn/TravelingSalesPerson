@@ -188,7 +188,7 @@ class Route:
                     route.swapCitiesHelper(myMap,swap) # swap
                     route.swapCitiesHelper(myMap,swap[::-1]) # and swap back (reverse swap)
                     dist2=route.getDistance()
-                    assert dist1-dist2<0.000001, "Error in swapCities distance test"
+                    assert math.fabs(dist1-dist2)<0.000001, "Error in swapCities distance test"
 
     def recursiveDistanceTest(depth,maxDepth,myMap,route):
         """test is selecting and unselecting results in the same distance"""
@@ -200,7 +200,7 @@ class Route:
             Route.recursiveDistanceTest(depth+1,maxDepth,myMap,route)
             route.unselectLastCity(myMap)
             dist2=route.getDistance()
-            assert dist1-dist2<0.000001, "Error in recursive distance test"
+            assert math.fabs(dist1-dist2)<0.000001, "Error in recursive distance test"
             print(route)
         else:
             print(route)
