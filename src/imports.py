@@ -18,4 +18,5 @@ from Algorithms.RandomAlgorithm import *
 from Algorithms.HillClimberAlgorithm import *
 from Algorithms.ConstructiveAlgorithm import * # constructive
 from Algorithms.GreedyAlgorithm import *
+from Algorithms.BreadthFirstAlgorithm import *
 from Algorithms.DepthFirstAlgorithm import *
