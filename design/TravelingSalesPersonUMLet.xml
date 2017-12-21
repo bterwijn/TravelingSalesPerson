@@ -47,7 +47,7 @@ n</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></
 --
 
 --
-int getClosestCity(int c,Set&lt;int&gt; remainingCities)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>150</x><y>593</y><w>210</w><h>120</h></coordinates><panel_attributes>RandomAlgorithm
+int getClosestCity(Map myMap,Route route)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>150</x><y>593</y><w>210</w><h>120</h></coordinates><panel_attributes>RandomAlgorithm
 --
 
 --
