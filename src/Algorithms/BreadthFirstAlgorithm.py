@@ -1,5 +1,5 @@
 import sys
-sys.path.append('../')
+sys.path.append('..')
 from imports import *
 
 class BreadthFirstAlgorithm(ConstructiveAlgorithm):
@@ -21,16 +21,16 @@ class BreadthFirstAlgorithm(ConstructiveAlgorithm):
             print("generation size:",len(generation))
             newGeneration=[]
             while len(generation)>0: # make new generation
-                route=generation.pop()
-                for nextCity in route.getRemainingCities(): # try all options
-                    newRoute=copy.deepcopy(route) # copy parent
-                    newRoute.selectNextCity(myMap,nextCity)
-                    newGeneration.append(newRoute)
+                route=generation.pop() # for each individual in the generation
+                for nextCity in route.getRemainingCities(): # create all childeren
+                    newRoute=copy.deepcopy(route)           # copy parent
+                    newRoute.selectNextCity(myMap,nextCity) # update child
+                    newGeneration.append(newRoute)          # add child to new generation
                     distance=newRoute.getDistance()
                     if distance<self.bestScore:
                         self.bestScore=distance
                         self.bestRoute=newRoute
-            generation=newGeneration # set current generation
+            generation=newGeneration # replace current generation
     
     def unitTest(argv):
         myMap=Map()
