@@ -26,21 +26,23 @@ class HillClimberAlgorithm(IterativeAlgorithm):
         notImproved=0
         while self.iteration<self.nrIterations:
             self.iteration+=1
-            route.randomSwap2Cities(myMap) # do single hill climber step
+            oldRoute=copy.deepcopy(route)  # remember old route before change
+            route.randomSwap2Cities(myMap) # do single hill climber step (change route)
             distance=route.getDistance()
-            self.addScore(distance) # record score
-            if distance<self.bestScore: # if better update best
-                self.bestScore=distance
-                self.bestRoute=copy.deepcopy(route)
-                print("bestScore:",self.bestScore)
             if distance<localBestScore: # if better update local best
                 localBestScore=distance
                 localBestRoute=copy.deepcopy(route)
                 #print("localBestScore:",localBestScore)
                 #print("notImproved:",notImproved)
                 notImproved=0
+                if distance<self.bestScore: # if better update best
+                    self.bestScore=distance
+                    self.bestRoute=copy.deepcopy(route)
+                    print("bestScore:",self.bestScore)
             else:
                 notImproved+=1
+                route=oldRoute # revert to oldRoute when score is not improved
+            self.addScore(localBestScore) # record score
             # restart after not improving for restartCounter steps
             if self.restartCounter>0 and notImproved>=self.restartCounter:
                 #print("notImproved:",notImproved)
