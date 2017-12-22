@@ -15,6 +15,8 @@ class GreedyAlgorithm(ConstructiveAlgorithm):
             if nextCity<0: # if no more next cities stop
                 break
             route.selectNextCity(myMap,nextCity) # select closest city
+        distance=route.getDistance()
+        self.addScore(distance) # record score 
         self.stopTimer()
         return route
    

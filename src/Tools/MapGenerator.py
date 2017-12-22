@@ -8,7 +8,7 @@ if len(sys.argv)<4 or sys.argv[1]=="-h" or sys.argv[1]=="--help":
     print("A city's first coordinate is randomly choosen between 0 and c1")
     print("        second coordinate is randomly choosen between 0 and c2")
     print("        etc.")
-    print("  usage: "+sys.argv[0]+" <filename> <nrCities> <c1> <c2> ...")
+    print("  usage: "+sys.argv[0]+" <filename> <nrCities> <c1> [<c2> [...]")
     print("  example: "+sys.argv[0]+" myMap.txt 20 10.0 10.0")
     exit()
 

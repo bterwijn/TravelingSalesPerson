@@ -27,15 +27,11 @@ class Algorithm:
     def getScores(self):
         return self.scores
 
-    def unitTest(argv):
-        algo=Algorithm()
-        algo.startTimer()
-        time.sleep(.300)
-        algo.stopTimer()
-        print(algo.getTime())
-        for i in range(10):
-            algo.addScore(i)
-        print(algo.getScores())
+    def appendList(filename,myList):
+        with open(filename, "a") as f:
+            for i in myList:
+                f.write(str(i)+" ")
+            f.write("\n")
 
     def testAlgorithm(algo):
         myMap=Map()
@@ -47,6 +43,16 @@ class Algorithm:
         print(route)
         print("time:",algo.getTime())
         return route
+
+    def unitTest(argv):
+        algo=Algorithm()
+        algo.startTimer()
+        time.sleep(.300)
+        algo.stopTimer()
+        print(algo.getTime())
+        for i in range(10):
+            algo.addScore(i)
+        print(algo.getScores())
     
 if __name__ == "__main__":
     Algorithm.unitTest(sys.argv)
