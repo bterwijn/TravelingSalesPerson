@@ -36,24 +36,18 @@ class HillClimberAlgorithm(IterativeAlgorithm):
             if distance<localBestScore: # if better update local best
                 localBestScore=distance
                 localBestRoute=copy.deepcopy(route)
-                print("localBestScore:",localBestScore)
-                print("notImproved:",notImproved)
+                #print("localBestScore:",localBestScore)
+                #print("notImproved:",notImproved)
                 notImproved=0
             else:
                 notImproved+=1
             # restart after not improving for restartCounter steps
             if self.restartCounter>0 and notImproved>=self.restartCounter:
-                print("notImproved:",notImproved)
+                #print("notImproved:",notImproved)
                 break
     
     def unitTest(argv):
-        myMap=Map()
-        myMap.randomizeMap(10,Position([10,10]))
-        algo=HillClimberAlgorithm(30000,300)
-        route=algo.run(myMap)
-        #print(algo.getScores())
-        print(route)
-        print("time:",algo.getTime())
+        Algorithm.testAlgorithm(HillClimberAlgorithm(30000,300))
         
 if __name__ == "__main__":
     HillClimberAlgorithm.unitTest(sys.argv)

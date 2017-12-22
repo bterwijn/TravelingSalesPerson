@@ -32,13 +32,7 @@ class DepthFirstAlgorithm(ConstructiveAlgorithm):
                     route.unselectLastCity(myMap) # undo selectNextCity
     
     def unitTest(argv):
-        myMap=Map()
-        myMap.randomizeMap(10,Position([10,10]))
-        algo=DepthFirstAlgorithm()
-        route=algo.run(myMap)
-        #print(algo.getScores())
-        print(route)
-        print("time:",algo.getTime())
+        Algorithm.testAlgorithm(DepthFirstAlgorithm())
     
 if __name__ == "__main__":
     DepthFirstAlgorithm.unitTest(sys.argv)

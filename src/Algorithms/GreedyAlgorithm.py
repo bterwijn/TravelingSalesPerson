@@ -31,13 +31,7 @@ class GreedyAlgorithm(ConstructiveAlgorithm):
         return minIndex
     
     def unitTest(argv):
-        myMap=Map()
-        myMap.randomizeMap(10,Position([10,10]))
-        algo=GreedyAlgorithm()
-        route=algo.run(myMap)
-        #print(algo.getScores())
-        print(route)
-        print("time:",algo.getTime())
+        Algorithm.testAlgorithm(GreedyAlgorithm())
     
 if __name__ == "__main__":
     GreedyAlgorithm.unitTest(sys.argv)

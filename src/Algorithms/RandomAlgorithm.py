@@ -24,13 +24,7 @@ class RandomAlgorithm(IterativeAlgorithm):
         return bestRoute
 
     def unitTest(argv):
-        myMap=Map()
-        myMap.randomizeMap(10,Position([10,10]))
-        algo=RandomAlgorithm(10000)
-        route=algo.run(myMap)
-        #print(algo.getScores())
-        print(route)
-        print("time:",algo.getTime())
+        Algorithm.testAlgorithm(RandomAlgorithm(10000))
     
 if __name__ == "__main__":
     RandomAlgorithm.unitTest(sys.argv)

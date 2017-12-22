@@ -36,13 +36,7 @@ class BreadthFirstAlgorithm(ConstructiveAlgorithm):
             generation=newGeneration # replace current generation
     
     def unitTest(argv):
-        myMap=Map()
-        myMap.randomizeMap(9,Position([10,10]))
-        algo=BreadthFirstAlgorithm()
-        route=algo.run(myMap)
-        #print(algo.getScores())
-        print(route)
-        print("time:",algo.getTime())
+        Algorithm.testAlgorithm(BreadthFirstAlgorithm())
     
 if __name__ == "__main__":
     BreadthFirstAlgorithm.unitTest(sys.argv)

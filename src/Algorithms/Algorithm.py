@@ -36,6 +36,17 @@ class Algorithm:
         for i in range(10):
             algo.addScore(i)
         print(algo.getScores())
+
+    def testAlgorithm(algo):
+        myMap=Map()
+        random.seed(1) # fix random numbers
+        myMap.randomizeMap(9,Position([10,10]))
+        print(myMap)
+        route=algo.run(myMap)
+        #print(algo.getScores())
+        print(route)
+        print("time:",algo.getTime())
+        return route
     
 if __name__ == "__main__":
     Algorithm.unitTest(sys.argv)
