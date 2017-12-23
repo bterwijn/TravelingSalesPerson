@@ -16,6 +16,7 @@ from Algorithms.Algorithm import *
 from Algorithms.IterativeAlgorithm import * # iterative
 from Algorithms.RandomAlgorithm import *
 from Algorithms.HillClimberAlgorithm import *
+from Algorithms.SimulatedAnnealingAlgorithm import *
 from Algorithms.ConstructiveAlgorithm import * # constructive
 from Algorithms.GreedyAlgorithm import *
 from Algorithms.BreadthFirstAlgorithm import *

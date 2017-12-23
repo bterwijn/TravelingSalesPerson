@@ -5,11 +5,12 @@ from imports import *
 if len(sys.argv)<6 or sys.argv[1]=="-h" or sys.argv[1]=="--help":
     print("Runs an algorithm to solve a TSP map and saves the best")
     print("solution and appends score and time to file.")
-    print("  usage: "+sys.argv[0]+" <algo-name> <map-file> <solution-file> <score-file> <time-file> [-r <nrRuns>] [-i <nrIteration>] [-r <restartCounter>] [-b]")
-    print("         algo-name        'random', 'hillClimber', 'greedy', 'breadthFirst' or 'depthFirst'")
+    print("  usage: "+sys.argv[0]+" <algo-name> <map-file> <solution-file> <score-file> <time-file> [-r <nrRuns>] [-i <nrIteration>] [-r <restartCounter>] [-t startTemperature] [-b]")
+    print("         algo-name        'random', 'hillClimber', 'simAnneal', 'greedy', 'breadthFirst' or 'depthFirst'")
     print("         r                number of runs (default 1)")
     print("         i                number of iterations per run, only used for random and hillClimber (default 1000)")
     print("         c                no improvement restart counter, only used for hillClimber (default -1)")
+    print("         t                start temperature for simulated annealing (default 0.5)")
     print("         b                branch and bound (default False)")
     print("  example: "+sys.argv[0]+" random myMap.txt solution.txt scores.txt time.txt")
     exit()
@@ -23,6 +24,7 @@ timeFile=sys.argv[5]
 nrRuns=1
 nrIteration=1000
 restartCounter=-1
+startTemperature=0.5
 branchAndBound=False
 for i in range(6,len(sys.argv)):
     if sys.argv[i]=="-r":
@@ -34,6 +36,9 @@ for i in range(6,len(sys.argv)):
     if sys.argv[i]=="-c":
         i+=1
         restartCounter=int( sys.argv[i])
+    if sys.argv[i]=="-t":
+        i+=1
+        startTemperature=float( sys.argv[i])
     if sys.argv[i]=="-b":
         branchAndBound=True
 
@@ -43,6 +48,8 @@ def getAlgorithm(algoName):
         algo=RandomAlgorithm(nrIteration)
     elif algoName=="hillClimber":
         algo=HillClimberAlgorithm(nrIteration,restartCounter)
+    elif algoName=="simAnneal":
+        algo=SimulatedAnnealingAlgorithm(nrIteration,restartCounter,startTemperature)
     elif algoName=="greedy":
         algo=GreedyAlgorithm()
     elif algoName=="breadthFirst":
@@ -66,3 +73,4 @@ def runAlgorith():#,mapFile,solutionFile,scoreFile,timeFile,):
 
 runAlgorith()
 print("done")
+
