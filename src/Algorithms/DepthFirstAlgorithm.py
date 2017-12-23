@@ -4,8 +4,9 @@ from imports import *
 
 class DepthFirstAlgorithm(ConstructiveAlgorithm):
 
-    def __init__(self):
+    def __init__(self,branchAndBound):
         super().__init__()
+        self.branchAndBound=branchAndBound
 
     def run(self,myMap):
         self.startTimer()
@@ -25,7 +26,7 @@ class DepthFirstAlgorithm(ConstructiveAlgorithm):
                 self.bestRoute=copy.deepcopy(route)
                 print(distance)
         else:
-            if distance<self.bestScore: # branch and bound
+            if distance<self.bestScore or not self.branchAndBound: # branch and bound
                 for nextCity in route.getRemainingCities(): # try all options
                     route.selectNextCity(myMap,nextCity)
                     self.recursiveDepthFirst(myMap,route) # recursive call

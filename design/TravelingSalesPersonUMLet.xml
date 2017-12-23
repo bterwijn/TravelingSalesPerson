@@ -47,6 +47,7 @@ n</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></
 --
 
 --
+init(bool branchAndBound)
 recursiveDepthFirst(Map myMap,Route route)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>50</x><y>673</y><w>110</w><h>80</h></coordinates><panel_attributes>RandomAlgorithm
 --
 
