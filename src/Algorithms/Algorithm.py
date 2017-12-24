@@ -7,10 +7,27 @@ class Algorithm:
     def __init__(self):
         self.timeStart=0
         self.timeStop=0
-        self.scores=[]
+        self.reset()
         
     def run(self,myMap):
         return None
+
+    def reset(self):
+        self.scores=[]
+        self.bestScore=float('inf')
+        self.bestRoute=None
+
+    def updateBestRoute(self,route):
+        self.addScore(route.getDistance())
+        if route.getDistance()<self.bestScore:
+            self.bestScore=route.getDistance()
+            self.bestRoute=copy.deepcopy(route) # deepcopy to avoid later changes
+            print("bestScore: ",self.bestScore)
+            return True
+        return False
+
+    def getBestRoute(self):
+        return self.bestRoute
     
     def startTimer(self):
         self.timeStart=time.time()

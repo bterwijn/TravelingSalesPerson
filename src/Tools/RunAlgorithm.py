@@ -15,34 +15,7 @@ if len(sys.argv)<6 or sys.argv[1]=="-h" or sys.argv[1]=="--help":
     print("  example: "+sys.argv[0]+" random myMap.txt solution.txt scores.txt time.txt")
     exit()
 
-algoName=sys.argv[1]
-mapFile=sys.argv[2]
-solutionFile=sys.argv[3]
-scoreFile=sys.argv[4]
-timeFile=sys.argv[5]
-
-nrRuns=1
-nrIteration=1000
-restartCounter=-1
-startTemperature=0.5
-branchAndBound=False
-for i in range(6,len(sys.argv)):
-    if sys.argv[i]=="-r":
-        i+=1
-        nrRuns=int( sys.argv[i])
-    if sys.argv[i]=="-i":
-        i+=1
-        nrIteration=int( sys.argv[i])
-    if sys.argv[i]=="-c":
-        i+=1
-        restartCounter=int( sys.argv[i])
-    if sys.argv[i]=="-t":
-        i+=1
-        startTemperature=float( sys.argv[i])
-    if sys.argv[i]=="-b":
-        branchAndBound=True
-
-def getAlgorithm(algoName):
+def getAlgorithm(algoName,nrIteration,restartCounter,startTemperature):
     algo=None
     if algoName=="random":
         algo=RandomAlgorithm(nrIteration)
@@ -58,19 +31,53 @@ def getAlgorithm(algoName):
         algo=DepthFirstAlgorithm(branchAndBound)
     else:
         print("algo-name '"+algoName+"' not valid")
+        exit()
     return algo
-    
-def runAlgorith():#,mapFile,solutionFile,scoreFile,timeFile,):
+
+def runAlgorithm(algo,mapFile,solutionFile,scoreFile,timeFile,nrRuns):
     myMap=Map()
     myMap.load(mapFile)
     for i in range(nrRuns):
         print("run ",i+1,"/",nrRuns)
-        algo=getAlgorithm(algoName)
         route=algo.run(myMap)
-        route.save(solutionFile+"_"+str(i).zfill(5))
-        Algorithm.appendList(scoreFile,algo.getScores())
-        Algorithm.appendList(timeFile,[algo.getTime()])
+        if solutionFile!="":
+            route.save(solutionFile+"_"+str(i).zfill(5))
+        if scoreFile!="":
+            Algorithm.appendList(scoreFile,algo.getScores())
+        if timeFile!="":
+            Algorithm.appendList(timeFile,[algo.getTime()])
 
-runAlgorith()
-print("done")
+def main(argv):
+    algoName=sys.argv[1]
+    mapFile=sys.argv[2]
+    solutionFile=sys.argv[3]
+    scoreFile=sys.argv[4]
+    timeFile=sys.argv[5]
+
+    nrRuns=1
+    nrIteration=1000
+    restartCounter=-1
+    startTemperature=0.5
+    branchAndBound=False
+    for i in range(6,len(sys.argv)):
+        if sys.argv[i]=="-r":
+            i+=1
+            nrRuns=int( sys.argv[i])
+        if sys.argv[i]=="-i":
+            i+=1
+            nrIteration=int( sys.argv[i])
+        if sys.argv[i]=="-c":
+            i+=1
+            restartCounter=int( sys.argv[i])
+        if sys.argv[i]=="-t":
+            i+=1
+            startTemperature=float( sys.argv[i])
+        if sys.argv[i]=="-b":
+            branchAndBound=True
+    algo=getAlgorithm(algoName,nrIteration,restartCounter,startTemperature)
+    runAlgorithm(algo,mapFile,solutionFile,scoreFile,timeFile,nrRuns)
+
+if __name__ == "__main__":
+    main(sys.argv)
+    print("done")
 

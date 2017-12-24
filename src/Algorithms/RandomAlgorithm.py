@@ -9,19 +9,13 @@ class RandomAlgorithm(IterativeAlgorithm):
 
     def run(self,myMap):
         self.startTimer()
-        bestScore=float('inf')
-        bestRoute=None
+        self.reset()
         route=myMap.initRoute()
         for i in range(self.nrIterations):
-            route.randomize(myMap)
-            distance=route.getDistance()
-            self.addScore(distance) # record score 
-            if distance<bestScore:
-                bestScore=distance
-                bestRoute=copy.deepcopy(route)
-                print(bestScore)
+            route.randomize(myMap)      # randomize route
+            self.updateBestRoute(route) # update best score
         self.stopTimer()
-        return bestRoute
+        return self.getBestRoute()
 
     def unitTest(argv):
         Algorithm.testAlgorithm(RandomAlgorithm(10000))

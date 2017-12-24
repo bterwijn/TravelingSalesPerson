@@ -10,21 +10,16 @@ class DepthFirstAlgorithm(ConstructiveAlgorithm):
 
     def run(self,myMap):
         self.startTimer()
-        self.bestScore=float('inf')
-        self.bestRoute=None
+        self.reset()
         route=myMap.initRoute()
         self.recursiveDepthFirst(myMap,route)
         self.stopTimer()
-        return self.bestRoute
+        return self.getBestRoute()
    
     def recursiveDepthFirst(self,myMap,route):
         distance=route.getDistance()
         if route.isComplete(): # stop condition
-            self.addScore(distance)
-            if distance<self.bestScore:
-                self.bestScore=distance
-                self.bestRoute=copy.deepcopy(route)
-                print(distance)
+            self.updateBestRoute(route)
         else:
             if distance<self.bestScore or not self.branchAndBound: # branch and bound
                 for nextCity in route.getRemainingCities(): # try all options

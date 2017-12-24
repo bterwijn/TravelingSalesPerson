@@ -9,16 +9,16 @@ class GreedyAlgorithm(ConstructiveAlgorithm):
 
     def run(self,myMap):
         self.startTimer()
+        self.reset()
         route=myMap.initRoute()
         while True:
             nextCity=self.getClosestCity(myMap,route)
             if nextCity<0: # if no more next cities stop
                 break
             route.selectNextCity(myMap,nextCity) # select closest city
-        distance=route.getDistance()
-        self.addScore(distance) # record score 
+        self.updateBestRoute(route)
         self.stopTimer()
-        return route
+        return self.getBestRoute()
    
     def getClosestCity(self,myMap,route):
         minDistance=float("inf")

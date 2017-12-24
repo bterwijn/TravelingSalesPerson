@@ -9,12 +9,11 @@ class BreadthFirstAlgorithm(ConstructiveAlgorithm):
 
     def run(self,myMap):
         self.startTimer()
-        self.bestScore=float('inf')
-        self.bestRoute=None
+        self.reset()
         generation=[myMap.initRoute()] # start with generation of 1 route
         self.breadthFirst(myMap,generation)
         self.stopTimer()
-        return self.bestRoute
+        return self.getBestRoute()
    
     def breadthFirst(self,myMap,generation):
         while len(generation)>0:
@@ -28,11 +27,7 @@ class BreadthFirstAlgorithm(ConstructiveAlgorithm):
                     if not child.isComplete():
                         newGeneration.append(child)      # add child to new generation
                     else:
-                        distance=child.getDistance()
-                        self.addScore(distance)
-                        if distance<self.bestScore:
-                            self.bestScore=distance
-                            self.bestRoute=child
+                        self.updateBestRoute(child)
             generation=newGeneration # replace current generation
     
     def unitTest(argv):
