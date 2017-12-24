@@ -2,20 +2,20 @@ import sys
 sys.path.append('..')
 from imports import *
 
-if len(sys.argv)<6 or sys.argv[1]=="-h" or sys.argv[1]=="--help":
-    print("Runs an algorithm to solve a TSP map and saves the best")
-    print("solution and appends score and time to file.")
-    print("  usage: "+sys.argv[0]+" <algo-name> <map-file> <solution-file> <score-file> <time-file> [-r <nrRuns>] [-i <nrIteration>] [-r <restartCounter>] [-t startTemperature] [-b]")
-    print("         algo-name        'random', 'hillClimber', 'simAnneal', 'greedy', 'breadthFirst' or 'depthFirst'")
-    print("         r                number of runs (default 1)")
-    print("         i                number of iterations per run, only used for random and hillClimber (default 1000)")
-    print("         c                no improvement restart counter, only used for hillClimber (default -1)")
-    print("         t                start temperature for simulated annealing (default 0.5)")
-    print("         b                branch and bound (default False)")
-    print("  example: "+sys.argv[0]+" random myMap.txt solution.txt scores.txt time.txt")
-    exit()
-
-def getAlgorithm(algoName,nrIteration,restartCounter,startTemperature):
+def runAlgorithm(algo,mapFile,solutionFile,scoreFile,timeFile,nrRuns):
+    myMap=Map()
+    myMap.load(mapFile)
+    for i in range(nrRuns):
+        print("run ",i+1,"/",nrRuns)
+        route=algo.run(myMap)
+        if solutionFile!="":
+            route.save(solutionFile+"_"+str(i).zfill(5))
+        if scoreFile!="":
+            Algorithm.appendList(scoreFile,algo.getScores())
+        if timeFile!="":
+            Algorithm.appendList(timeFile,[algo.getTime()])
+            
+def getAlgorithm(algoName,nrIteration,restartCounter,startTemperature,branchAndBound):
     algo=None
     if algoName=="random":
         algo=RandomAlgorithm(nrIteration)
@@ -34,20 +34,19 @@ def getAlgorithm(algoName,nrIteration,restartCounter,startTemperature):
         exit()
     return algo
 
-def runAlgorithm(algo,mapFile,solutionFile,scoreFile,timeFile,nrRuns):
-    myMap=Map()
-    myMap.load(mapFile)
-    for i in range(nrRuns):
-        print("run ",i+1,"/",nrRuns)
-        route=algo.run(myMap)
-        if solutionFile!="":
-            route.save(solutionFile+"_"+str(i).zfill(5))
-        if scoreFile!="":
-            Algorithm.appendList(scoreFile,algo.getScores())
-        if timeFile!="":
-            Algorithm.appendList(timeFile,[algo.getTime()])
-
-def main(argv):
+def mainRunAlgorithm(argv):
+    if len(sys.argv)<6 or sys.argv[1]=="-h" or sys.argv[1]=="--help":
+        print("Runs an algorithm to solve a TSP map and saves the best")
+        print("solution and appends score and time to file.")
+        print("  usage: "+sys.argv[0]+" <algo-name> <map-file> <solution-file> <score-file> <time-file> [-r <nrRuns>] [-i <nrIteration>] [-r <restartCounter>] [-t startTemperature] [-b]")
+        print("         algo-name        'random', 'hillClimber', 'simAnneal', 'greedy', 'breadthFirst' or 'depthFirst'")
+        print("         r                number of runs (default 1)")
+        print("         i                number of iterations per run, only used for random and hillClimber (default 1000)")
+        print("         c                no improvement restart counter, only used for hillClimber (default -1)")
+        print("         t                start temperature for simulated annealing (default 0.5)")
+        print("         b                branch and bound (default False)")
+        print("  example: "+sys.argv[0]+" random myMap.txt solution.txt scores.txt time.txt")
+        exit()
     algoName=sys.argv[1]
     mapFile=sys.argv[2]
     solutionFile=sys.argv[3]
@@ -74,10 +73,10 @@ def main(argv):
             startTemperature=float( sys.argv[i])
         if sys.argv[i]=="-b":
             branchAndBound=True
-    algo=getAlgorithm(algoName,nrIteration,restartCounter,startTemperature)
+    algo=getAlgorithm(algoName,nrIteration,restartCounter,startTemperature,branchAndBound)
     runAlgorithm(algo,mapFile,solutionFile,scoreFile,timeFile,nrRuns)
 
 if __name__ == "__main__":
-    main(sys.argv)
+    mainRunAlgorithm(sys.argv)
     print("done")
 
