@@ -4,6 +4,7 @@ import math
 import random
 import time
 import copy
+import os
 
 # my sources
 from TravelingSalesPerson.Position import *
@@ -21,3 +22,7 @@ from Algorithms.ConstructiveAlgorithm import * # constructive
 from Algorithms.GreedyAlgorithm import *
 from Algorithms.BreadthFirstAlgorithm import *
 from Algorithms.DepthFirstAlgorithm import *
+
+# tools
+from Tools.MapGenerator import *
+from Tools.RunAlgorithm import *
