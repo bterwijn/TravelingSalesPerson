@@ -5,6 +5,10 @@ import random
 import time
 import copy
 import os
+import glob
+
+# visualization
+import matplotlib.pyplot as plt
 
 # my sources
 from TravelingSalesPerson.Position import *
@@ -26,3 +30,6 @@ from Algorithms.DepthFirstAlgorithm import *
 # tools
 from Tools.MapGenerator import *
 from Tools.RunAlgorithm import *
+
+# visualize
+from Visualize.Chart import *

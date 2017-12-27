@@ -1,71 +1,19 @@
 from imports import *
 
-# Greedy
-for i in [5,7,10,20,50,100]:
-    algoName="Greedy"
-    mapFile=os.path.join("Maps","map"+str(i)+".txt")
-    print("solving '",mapFile,"' using "+algoName)
-    solutionFile=os.path.join("Results",algoName+"_map"+str(i)+"_solution.txt")
-    scoreFile   =os.path.join("Results",algoName+"_map"+str(i)+"_scores.txt")
-    timeFile    =os.path.join("Results",algoName+"_map"+str(i)+"_times.txt")
-    runAlgorithm(GreedyAlgorithm(),mapFile,solutionFile,scoreFile,timeFile,1)
+def generateResults(maps,algo,algoName,nrRuns):
+    for i in maps:
+        mapFile=os.path.join("..","maps","map"+str(i).zfill(5)+".txt")
+        print("solving '",mapFile,"' using "+algoName)
+        solutionFile=os.path.join("..","results","map"+str(i).zfill(5)+"_"+algoName+"_solution.txt")
+        scoreFile   =os.path.join("..","results","map"+str(i).zfill(5)+"_"+algoName+"_scores.txt")
+        timeFile    =os.path.join("..","results","map"+str(i).zfill(5)+"_"+algoName+"_times.txt")
+        runAlgorithm(algo,mapFile,solutionFile,scoreFile,timeFile,nrRuns)
 
-# Breadth First
-for i in [5,7]:
-    algoName="BreadthFirst"
-    mapFile=os.path.join("Maps","map"+str(i)+".txt")
-    print("solving '",mapFile,"' using "+algoName)
-    solutionFile=os.path.join("Results",algoName+"_map"+str(i)+"_solution.txt")
-    scoreFile   =os.path.join("Results",algoName+"_map"+str(i)+"_scores.txt")
-    timeFile    =os.path.join("Results",algoName+"_map"+str(i)+"_times.txt")
-    runAlgorithm(BreadthFirstAlgorithm(),mapFile,solutionFile,scoreFile,timeFile,1)
-
-# Depth First
-for i in [5,7,10]:
-    algoName="DepthFirst"
-    mapFile=os.path.join("Maps","map"+str(i)+".txt")
-    print("solving '",mapFile,"' using "+algoName)
-    solutionFile=os.path.join("Results",algoName+"_map"+str(i)+"_solution.txt")
-    scoreFile   =os.path.join("Results",algoName+"_map"+str(i)+"_scores.txt")
-    timeFile    =os.path.join("Results",algoName+"_map"+str(i)+"_times.txt")
-    runAlgorithm(DepthFirstAlgorithm(False),mapFile,solutionFile,scoreFile,timeFile,1)
-
-# Depth First
-for i in [5,7,10]:
-    algoName="DepthFirstBNB"
-    mapFile=os.path.join("Maps","map"+str(i)+".txt")
-    print("solving '",mapFile,"' using "+algoName)
-    solutionFile=os.path.join("Results",algoName+"_map"+str(i)+"_solution.txt")
-    scoreFile   =os.path.join("Results",algoName+"_map"+str(i)+"_scores.txt")
-    timeFile    =os.path.join("Results",algoName+"_map"+str(i)+"_times.txt")
-    runAlgorithm(DepthFirstAlgorithm(True),mapFile,solutionFile,scoreFile,timeFile,1)
-
-# Random
-for i in [5,7,10,20]:
-    algoName="Random"
-    mapFile=os.path.join("Maps","map"+str(i)+".txt")
-    print("solving '",mapFile,"' using "+algoName)
-    solutionFile=os.path.join("Results",algoName+"_map"+str(i)+"_solution.txt")
-    scoreFile   =os.path.join("Results",algoName+"_map"+str(i)+"_scores.txt")
-    timeFile    =os.path.join("Results",algoName+"_map"+str(i)+"_times.txt")
-    runAlgorithm(RandomAlgorithm(i*1000),mapFile,solutionFile,scoreFile,timeFile,10)
-
-# Hill Climber Restart
-for i in [5,7,10,20]:
-    algoName="HillClimberRestart"
-    mapFile=os.path.join("Maps","map"+str(i)+".txt")
-    print("solving '",mapFile,"' using "+algoName)
-    solutionFile=os.path.join("Results",algoName+"_map"+str(i)+"_solution.txt")
-    scoreFile   =os.path.join("Results",algoName+"_map"+str(i)+"_scores.txt")
-    timeFile    =os.path.join("Results",algoName+"_map"+str(i)+"_times.txt")
-    runAlgorithm(HillClimberAlgorithm(i*1000,i*10),mapFile,solutionFile,scoreFile,timeFile,10)
-
-# Simulated Annealling
-for i in [5,7,10,20]:
-    algoName="SimulatedAnnealing"
-    mapFile=os.path.join("Maps","map"+str(i)+".txt")
-    print("solving '",mapFile,"' using "+algoName)
-    solutionFile=os.path.join("Results",algoName+"_map"+str(i)+"_solution.txt")
-    scoreFile   =os.path.join("Results",algoName+"_map"+str(i)+"_scores.txt")
-    timeFile    =os.path.join("Results",algoName+"_map"+str(i)+"_times.txt")
-    runAlgorithm(SimulatedAnnealingAlgorithm(i*1000,-1,True),mapFile,solutionFile,scoreFile,timeFile,10)
+generateResults([5,7,10,20,50,100], GreedyAlgorithm(),"Greedy",1)
+generateResults([5,7], BreadthFirstAlgorithm(),"BreadthFirst",1)
+generateResults([5,7,10],DepthFirstAlgorithm(False),"DepthFirst",1)
+generateResults([5,7,10],DepthFirstAlgorithm(True),"DepthFirstBNB",1)
+generateResults([5,7,10,20],RandomAlgorithm(20000),"Random",5)
+generateResults([5,7,10,20],HillClimberAlgorithm(20000,-1),"HillClimber",5)
+generateResults([5,7,10,20],HillClimberAlgorithm(20000,300),"HillClimberRestart",5)
+generateResults([5,7,10,20],SimulatedAnnealingAlgorithm(20000,-1,True),"SimulatedAnnealing",5)
