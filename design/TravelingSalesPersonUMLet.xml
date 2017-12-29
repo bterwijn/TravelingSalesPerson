@@ -52,11 +52,12 @@ recursiveDepthFirst(Map myMap,Route route)</panel_attributes><additional_attribu
 --
 
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>673</y><w>230</w><h>80</h></coordinates><panel_attributes>HillClimberAlgorithm
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>673</y><w>230</w><h>100</h></coordinates><panel_attributes>HillClimberAlgorithm
 --
 
 --
 init(int nrIteration,int restartCounter)
+bool acceptNewRoute(oldRoute,newRoute)
 hillClimberRun(Map myMap,Route route)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>420</x><y>673</y><w>260</w><h>80</h></coordinates><panel_attributes>GreedyAlgorithm
 --
 
@@ -66,24 +67,33 @@ int getClosestCity(Map myMap,Route route)
 --
 
 --
-breadthFirst(Map myMap,List&lt;Route&gt; generation)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>490</x><y>313</y><w>210</w><h>180</h></coordinates><panel_attributes>Algorithm
+breadthFirst(Map myMap,List&lt;Route&gt; generation)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>490</x><y>313</y><w>210</w><h>220</h></coordinates><panel_attributes>Algorithm
 --
 float timeStart
 float timeStop
 List&lt;double&gt; scores
 --
 Route run(Map map)
+reset()
+updateBestRoute(Route route)
+Route getBestRoute()
 startTimer()
 stopTimer()
 double getTime()
 addScore(double score)
-List&lt;double&gt; getScores()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>150</x><y>610</y><w>70</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>50;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>280</x><y>610</y><w>70</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;50;60</additional_attributes></element><element><id>Relation</id><coordinates><x>600</x><y>600</y><w>180</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>160;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>830</x><y>600</y><w>30</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;73</additional_attributes></element><element><id>UMLClass</id><coordinates><x>160</x><y>553</y><w>210</w><h>70</h></coordinates><panel_attributes>IterativeAlgorithm
+List&lt;double&gt; getScores()</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>150</x><y>630</y><w>70</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>50;10;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>280</x><y>630</y><w>70</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;50;40</additional_attributes></element><element><id>Relation</id><coordinates><x>600</x><y>630</y><w>180</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>160;10;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>830</x><y>630</y><w>30</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;43</additional_attributes></element><element><id>UMLClass</id><coordinates><x>160</x><y>573</y><w>210</w><h>70</h></coordinates><panel_attributes>IterativeAlgorithm
 --
 
 --
 init(int nrIteration)
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>710</x><y>553</y><w>210</w><h>60</h></coordinates><panel_attributes>ConstructiveAlgorithm
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>710</x><y>583</y><w>210</w><h>60</h></coordinates><panel_attributes>ConstructiveAlgorithm
 --
 
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>330</x><y>480</y><w>210</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>190;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>670</x><y>480</y><w>90</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;70;70</additional_attributes></element><element><id>Relation</id><coordinates><x>308</x><y>110</y><w>80</w><h>40</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;60;13</additional_attributes></element><element><id>Relation</id><coordinates><x>890</x><y>600</y><w>200</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;180;73</additional_attributes></element></diagram>
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>330</x><y>520</y><w>210</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>190;10;10;50</additional_attributes></element><element><id>Relation</id><coordinates><x>670</x><y>520</y><w>90</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;70;60</additional_attributes></element><element><id>Relation</id><coordinates><x>308</x><y>110</y><w>80</w><h>40</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;60;13</additional_attributes></element><element><id>Relation</id><coordinates><x>890</x><y>630</y><w>200</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;180;43</additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>803</y><w>230</w><h>90</h></coordinates><panel_attributes>SimulatedAnnealing
+--
+
+--
+init(int nrIteration,int restartCounter)
+bool acceptNewRoute(oldRoute,newRoute)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>280</x><y>760</y><w>30</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element></diagram>
