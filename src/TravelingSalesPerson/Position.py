@@ -16,9 +16,11 @@ class Position:
         return repr(self)
 
     def getCoordinates(self):
+        """get the coordinates"""
         return self.coordinates
 
     def __getitem__(self, i):
+        """enables position[1] indexing of coordinates"""
         return self.coordinates[i]
     
     def distance(self,p2):

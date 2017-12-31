@@ -155,7 +155,7 @@ class Route:
             line=f.readline()
             line=line[line.index("[")+1:]
             line=line[:line.index("]")]
-            print(line)
+            #print(line)
             for i in line.split(","):
                 if (len(i))>0:
                     self.route.append(int(i))
@@ -163,7 +163,7 @@ class Route:
             line=f.readline()
             line=line[line.index("{")+1:]
             line=line[:line.index("}")]
-            print(line)
+            #print(line)
             for i in line.split(","):
                 if (len(i))>0:
                     self.remainingCities.add(int(i))

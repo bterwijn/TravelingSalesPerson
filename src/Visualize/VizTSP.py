@@ -50,7 +50,7 @@ def vizRoute(myMap,route):
                            border+(pos[0]-posMin[0])*wm,
                            border+(pos[1]-posMin[1])*hm,
                            fill="blue",arrow=LAST,arrowshape=(12,14,5),width=3,dash=())
-        lastPos=pos
+        lastPos=pos # remember last position to draw next line
         
 if __name__ == "__main__":
     myMap=Map()
