@@ -8,11 +8,12 @@ tk = Tk()
 cv = Canvas(tk, width=800, height=800) # create canvas cv
 cv.config(bg="black")
 cv.pack(fill=BOTH, expand=YES)
-
+tk.update_idletasks()
+    
 def tk_update():
     tk.update_idletasks()
     tk.update()
-tk_update()
+
 
 def tk_save(filename):
     x=tk.winfo_x()
@@ -36,10 +37,11 @@ def myDrawTest():
                        y,
                        x+random.random()*50+8,
                        y+random.random()*50+8,
-                       fill="red");
+                       fill="red")
     
 if __name__ == "__main__":
     while True:
         myDrawTest()        # draw
         tk_update()         # update
         tk_save("test.png") # save
+    tk.mainloop() # infinite event handler loop

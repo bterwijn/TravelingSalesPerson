@@ -17,6 +17,9 @@ class Position:
 
     def getCoordinates(self):
         return self.coordinates
+
+    def __getitem__(self, i):
+        return self.coordinates[i]
     
     def distance(self,p2):
         """compute distance to p2"""
@@ -36,7 +39,27 @@ class Position:
         for i in self.coordinates:
             c.append(random.uniform(0,i))
         return Position(c)
-        
+
+    def updatePosMin(self,posMin):
+        """update posMin in each dimension so that it takes the coordinate of self when it is smaller"""
+        for i in range(len(posMin.coordinates)):
+            if self.coordinates[i]<posMin.coordinates[i]:
+                posMin.coordinates[i]=self.coordinates[i]
+
+    def updatePosMax(self,posMax):
+        """update posMax in each dimension so that it takes the coordinate of self when it is bigger"""
+        for i in range(len(posMax.coordinates)):
+            if self.coordinates[i]>posMax.coordinates[i]:
+                posMax.coordinates[i]=self.coordinates[i]
+
+    def add(self,pos):
+        for i in range(len(pos.coordinates)):
+            self.coordinates[i]+=pos.coordinates[i]
+
+    def subtract(self,pos):
+        for i in range(len(pos.coordinates)):
+            self.coordinates[i]-=pos.coordinates[i]
+                
     def unitTest(argv):
         """run unit tests"""
         print("Position.test() ", end='', flush=True)
