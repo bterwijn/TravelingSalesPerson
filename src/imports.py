@@ -33,3 +33,8 @@ from Tools.RunAlgorithm import *
 
 # visualize
 from Visualize.Chart import *
+import pyscreenshot as ImageGrab # For Linux
+#from PIL import Image, ImageTk, ImageGrab  # For Windows & OSx
+from tkinter import *
+from Visualize.MyTK import *
+from Visualize.VizTSP import *

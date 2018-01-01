@@ -2,8 +2,6 @@ import sys
 sys.path.append('..')
 from imports import *
 
-from MyTK import *
-
 def minMaxMap(myMap):
     posMin=Position([ float("inf"), float("inf")])
     posMax=Position([-float("inf"),-float("inf")])
@@ -13,6 +11,7 @@ def minMaxMap(myMap):
     return posMin,posMax
 
 def vizMap(myMap):
+    cv.delete("all") # remove all previous drawings
     posMin,posMax=minMaxMap(myMap)
     w=cv.winfo_width() # window knows its own size
     h=cv.winfo_height()
@@ -33,6 +32,7 @@ def vizMap(myMap):
                        fill=color)
     
 def vizRoute(myMap,route):
+    cv.delete("all") # remove all previous drawings
     vizMap(myMap)
     r=route.getRoute()
     lastPos=None

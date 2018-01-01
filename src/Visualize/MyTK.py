@@ -1,8 +1,6 @@
-
-#from PIL import Image, ImageTk, ImageGrab  # For Windows & OSx
-import pyscreenshot as ImageGrab # For Linux
-from tkinter import *
-import random
+import sys
+sys.path.append('..')
+from imports import *
 
 tk = Tk()
 cv = Canvas(tk, width=800, height=800) # create canvas cv
