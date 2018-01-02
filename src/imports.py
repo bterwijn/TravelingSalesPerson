@@ -1,5 +1,8 @@
 
-# system
+# globals
+viz=False    # makes Algorithms vizualize the routes
+
+# system imports
 import math
 import random
 import time
@@ -7,16 +10,13 @@ import copy
 import os
 import glob
 
-# visualization
-import matplotlib.pyplot as plt
-
-# my sources
+# TravelingSalesPerson classes
 from TravelingSalesPerson.Position import *
 from TravelingSalesPerson.City import *
 from TravelingSalesPerson.Route import *
 from TravelingSalesPerson.Map import *
 
-# algorithms
+# Algorithm classes
 from Algorithms.Algorithm import *
 from Algorithms.IterativeAlgorithm import * # iterative
 from Algorithms.RandomAlgorithm import *
@@ -32,9 +32,5 @@ from Tools.MapGenerator import *
 from Tools.RunAlgorithm import *
 
 # visualize
-from Visualize.Chart import *
-import pyscreenshot as ImageGrab # For Linux
-#from PIL import Image, ImageTk, ImageGrab  # For Windows & OSx
-from tkinter import *
-from Visualize.MyTK import *
-from Visualize.VizTSP import *
+if viz:
+    from Visualize.VizTSP import *

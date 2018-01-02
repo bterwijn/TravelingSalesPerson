@@ -2,6 +2,8 @@ import sys
 sys.path.append('..')
 from imports import *
 
+from Visualize.Chart import *
+
 scoreFilesWildcards=os.path.join("..","results","*scores*.txt")
 scoreFiles=glob.glob(scoreFilesWildcards)
 for i in scoreFiles:

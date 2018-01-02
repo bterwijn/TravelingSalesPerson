@@ -30,6 +30,8 @@ class HillClimberAlgorithm(IterativeAlgorithm):
             route.randomSwap2Cities(myMap) # do hill climber step (change route)
             if self.acceptNewRoute(oldRoute,route): # check if route is accepted
                 notImproved=0
+                if viz:
+                    vizRouteWait(myMap,route) # vizualize
             else:
                 notImproved+=1
                 route=oldRoute # revert back to oldRoute when score is not better

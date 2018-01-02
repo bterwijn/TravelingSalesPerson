@@ -19,7 +19,7 @@ class SimulatedAnnealingAlgorithm(HillClimberAlgorithm):
         return False # don't accept new route
     
     def unitTest(argv):
-        Algorithm.testAlgorithm(SimulatedAnnealingAlgorithm(30000,300))
+        Algorithm.testAlgorithm(SimulatedAnnealingAlgorithm(30000,300,1))
         
 if __name__ == "__main__":
     SimulatedAnnealingAlgorithm.unitTest(sys.argv)

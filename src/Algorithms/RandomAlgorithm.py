@@ -13,6 +13,8 @@ class RandomAlgorithm(IterativeAlgorithm):
         route=myMap.initRoute()
         for i in range(self.nrIterations):
             route.randomize(myMap)      # randomize route
+            if viz:
+                vizRouteWait(myMap,route) # vizualize
             self.updateBestRoute(route) # update best score
         self.stopTimer()
         return self.getBestRoute()

@@ -2,6 +2,8 @@ import sys
 sys.path.append('..')
 from imports import *
 
+import matplotlib.pyplot as plt
+
 def loadMatrix(filename):
     mat=[]
     with open(filename, "r") as f:

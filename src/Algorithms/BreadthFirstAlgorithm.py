@@ -24,6 +24,8 @@ class BreadthFirstAlgorithm(ConstructiveAlgorithm):
                 for nextCity in route.getRemainingCities(): # create all childeren
                     child=copy.deepcopy(route)           # copy parent
                     child.selectNextCity(myMap,nextCity) # update child
+                    if viz:
+                        vizRouteWait(myMap,child) # vizualize
                     if not child.isComplete():
                         newGeneration.append(child)      # add child to new generation
                     else:

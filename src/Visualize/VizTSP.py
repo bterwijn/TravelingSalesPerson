@@ -2,6 +2,8 @@ import sys
 sys.path.append('..')
 from imports import *
 
+from Visualize.MyTK import *
+    
 def minMaxMap(myMap):
     posMin=Position([ float("inf"), float("inf")])
     posMax=Position([-float("inf"),-float("inf")])
@@ -51,6 +53,11 @@ def vizRoute(myMap,route):
                            border+(pos[1]-posMin[1])*hm,
                            fill="blue",arrow=LAST,arrowshape=(12,14,5),width=3,dash=())
         lastPos=pos # remember last position to draw next line
+
+def vizRouteWait(myMap,route):
+    vizRoute(myMap,route)
+    tk_update()
+    input("Press enter to continue")
         
 if __name__ == "__main__":
     myMap=Map()

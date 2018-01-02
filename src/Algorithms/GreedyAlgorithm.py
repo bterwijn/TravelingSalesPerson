@@ -16,6 +16,8 @@ class GreedyAlgorithm(ConstructiveAlgorithm):
             if nextCity<0: # if no more next cities stop
                 break
             route.selectNextCity(myMap,nextCity) # select closest city
+            if viz:
+                vizRouteWait(myMap,route) # vizualize
         self.updateBestRoute(route)
         self.stopTimer()
         return self.getBestRoute()

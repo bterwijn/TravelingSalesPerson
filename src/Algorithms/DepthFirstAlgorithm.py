@@ -17,6 +17,8 @@ class DepthFirstAlgorithm(ConstructiveAlgorithm):
         return self.getBestRoute()
    
     def recursiveDepthFirst(self,myMap,route):
+        if viz:
+            vizRouteWait(myMap,route) # vizualize
         distance=route.getDistance()
         if route.isComplete(): # stop condition
             self.updateBestRoute(route)
@@ -28,7 +30,7 @@ class DepthFirstAlgorithm(ConstructiveAlgorithm):
                     route.unselectLastCity(myMap) # undo selectNextCity
     
     def unitTest(argv):
-        Algorithm.testAlgorithm(DepthFirstAlgorithm())
+        Algorithm.testAlgorithm(DepthFirstAlgorithm(True))
     
 if __name__ == "__main__":
     DepthFirstAlgorithm.unitTest(sys.argv)

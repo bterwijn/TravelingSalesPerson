@@ -2,6 +2,10 @@ import sys
 sys.path.append('..')
 from imports import *
 
+import pyscreenshot as ImageGrab # For Linux
+#from PIL import Image, ImageTk, ImageGrab  # For Windows & OSx
+from tkinter import *
+
 tk = Tk()
 cv = Canvas(tk, width=800, height=800) # create canvas cv
 cv.config(bg="black")
