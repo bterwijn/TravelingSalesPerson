@@ -2,6 +2,8 @@ import sys
 sys.path.append('..')
 from imports import *
 
+from Visualize.VizTSP import *
+
 def drawSolutions(maps,algoName):
     for i in maps:
         mapFile=os.path.join("..","maps","map"+str(i).zfill(5)+".txt")
