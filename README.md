@@ -2,6 +2,8 @@
 Examples for searching for solutions to the Traveling Salesman (or salesperson) problem
 
 # Overview
+Directory structure:
+
 *├── design                      UML design documents
 *├── maps                        specific maps to run algorithms on
 *├── results                     results of algorithms on the maps
@@ -12,6 +14,7 @@ Examples for searching for solutions to the Traveling Salesman (or salesperson) 
 *    └── Visualize               code to vizualize results and solutions
 
 # Optional Dependencies
+
 *matplotlib
 *tkinter
 *pyscreenshot
