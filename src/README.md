@@ -1,6 +1,6 @@
 
 # Reproduce results
-To reproduce the results follow these steps:
+To reproduce the results run this code from with the src directory:
 
 ```
 python3 generateMaps.py      # generate the maps in ../maps
