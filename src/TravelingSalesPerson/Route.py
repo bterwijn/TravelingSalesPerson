@@ -39,7 +39,7 @@ class Route:
         return self.route[-1]
 
     def isComplete(self):
-        """get the current city on the route"""
+        """test if the route is complete (no more remainingCities)"""
         return len(self.remainingCities)==0
     
     def selectNextCity(self,myMap,nextCity):
