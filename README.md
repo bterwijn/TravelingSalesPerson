@@ -15,10 +15,11 @@ Directory structure:
 ```
 
 # Optional Dependencies
-
-*matplotlib
-*tkinter
-*pyscreenshot
+```
+matplotlib
+tkinter
+pyscreenshot
+```
 
 # Reproduce results
 See README.md in src directory
